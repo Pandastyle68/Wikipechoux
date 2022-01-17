@@ -6,41 +6,46 @@ import { SyntheticEvent } from 'react';
 
 
 const Mots: React.FC = () => {
-    const { name } = useParams<{ name: string; }>();
-    useIonViewWillEnter(() => {
-        renderMot();
-      });
-      async function getMot() {
-        let url = 'http://127.0.0.1:8888/wk/php/try.php?type=defMot&mot='+name;
-        try {
-          let res = await fetch(url);
-          return await res.json();
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      async function renderMot() {
-        let mot = await getMot();
-        let html = '';
-         if(mot == ""){
-            let htmlSegment = `<div class="user">
+  const { name } = useParams<{ name: string; }>();
+  useIonViewWillEnter(() => {
+    renderMot();
+  });
+  async function getMot() {
+    let url = 'http://127.0.0.1:80/wk/php/try.php?type=defMot&mot=' + name;
+    try {
+      let res = await fetch(url);
+      console.log(res);
+      return await res.json();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function renderMot() {
+    try {
+      let mot = await getMot();
+      let html = '';
+      if (mot == "") {
+        let htmlSegment = `<div class="user">
                               <h2>Mot non trouvé</h2>                         
                          </div>`;
-                         html += htmlSegment;
-         }else{
-         let htmlSegment = `<div class="user">
-                              <h2>${mot[0].nom_mot}</h2>
-                              <h2>${mot[0].definition}</h2>
+        html += htmlSegment;
+      } else {
+        let htmlSegment = `<div class="user">
+                              <h2>${mot.nom_mot}</h2>
+                              <h2>${mot.definition}</h2>
                          </div>`;
-                         html += htmlSegment;
-         }
-          
-    
-        let container = document.getElementById('container');
-        if (container != null) {
-          container.innerHTML = html;
-        }
+        html += htmlSegment;
       }
+
+
+      let container = document.getElementById('container');
+      if (container != null) {
+        container.innerHTML = html;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <IonPage>
       <IonHeader>
@@ -62,7 +67,7 @@ const Mots: React.FC = () => {
 
       <IonContent fullscreen>
         <div id="container">
-            dgdg
+          Aucun mot valide défini
         </div>
       </IonContent>
       <IonFooter >

@@ -1,16 +1,21 @@
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonIcon, IonSearchbar, IonFooter, IonButton, IonSlides,IonSlide } from '@ionic/react';
 import { useParams } from 'react-router';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
+import { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
 import { home } from 'ionicons/icons';
 import './Introduction.css';
 import { SyntheticEvent } from 'react';
+import 'swiper/swiper.min.css';
+import 'swiper/modules/autoplay/autoplay.min.css';
+import 'swiper/modules/keyboard/keyboard.min.css';
+import 'swiper/modules/pagination/pagination.min.css';
+import 'swiper/modules/scrollbar/scrollbar.min.css';
+import 'swiper/modules/zoom/zoom.min.css';
+import '@ionic/react/css/ionic-swiper.css';
 
 const Introduction: React.FC = () => {
 
   const { name } = useParams<{ name: string; }>();
-  const slideOpts = {
-    initialSlide: 0,
-    speed: 400
-  };
   return (
     <IonPage>
       <IonHeader>
@@ -26,26 +31,31 @@ const Introduction: React.FC = () => {
         <hr></hr>
         <div>
           <hr></hr>
-        <IonSlides pager={true} options={slideOpts}>
-          <IonSlide>
-         <p>Chacun donne son sens au monde, le mien est de coudre le temps pour peut-être y changer un morceau de réel.</p> 
-         </IonSlide>
-         <IonSlide>
+        <Swiper modules={[Autoplay, Keyboard, Pagination, Scrollbar, Zoom]} autoplay={true}
+          keyboard={true}
+          pagination={true}
+          scrollbar={true}
+          zoom={true}
+          loop={true}> 
+          <SwiperSlide>
+         <p>Chacun donne son sens au monde, le mien est de coudre le temps pour peut-être y changer un morceau de réel.</p>
+         </SwiperSlide>
+         <SwiperSlide>
          <p>C'est pourquoi j'ai entrepris de recréer toutes les définitions du dictionnaire et d'écrire une encyclopédie en lien avec mon travail plastique (installation, peinture, dessin, gravure, sculpture, vidéo, cinéma, performance...).</p>
-         </IonSlide>
-         <IonSlide>
+         </SwiperSlide>
+         <SwiperSlide>
          <p>On pourrait dire que c'est une encyclopédie des petites mémoires de la vie, qui fonctionnent comme des piqûres de rappel cherchant la vérité des rythmes du monde.</p>
-         </IonSlide>
-         <IonSlide>
+         </SwiperSlide>
+         <SwiperSlide>
          <p>Mon projet est de constituer une encyclopédie "Géographie d'un multivers" comportant la totalité des mots de la langue française.</p>
-         </IonSlide>
-         <IonSlide>
+         </SwiperSlide>
+         <SwiperSlide>
          <p>Le premier volume ressemble à une sorte de temps écrasé, possédant 8000 entrées et 300 travaux plastiques.</p>
-         </IonSlide>
-         <IonSlide>
+         </SwiperSlide>
+         <SwiperSlide>
          <p>Chaque nouveau volume est un outil qui me permet de voir l'univers sous un autre aspect, celui d'un multivers.</p>
-         </IonSlide>
-        </IonSlides>
+         </SwiperSlide>
+        </Swiper>
         <hr></hr>
         <h2 id="sign">Hervé Péchoux</h2>
         </div>

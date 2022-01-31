@@ -30,7 +30,7 @@ const Ptest: React.FC = () => {
                      // </div>`;
 
      // html += htmlSegment;
-   users.forEach((user: { id: any; libelle: any; image: any; }) => { //Exploiter la base de données quand il y a plusieurs données
+   users.forEach((user: { nom_mot: any; definition: any; image: any; }) => { //Exploiter la base de données quand il y a plusieurs données
      let htmlSegment = `<div class="user">
                           <h2>${user.nom_mot}</h2>
                           <h2>${user.definition}</h2>

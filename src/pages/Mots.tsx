@@ -1,6 +1,6 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonIcon, IonFooter, IonButton, useIonViewWillEnter } from '@ionic/react';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonIcon, IonFooter, IonButton, useIonViewWillEnter, IonLabel } from '@ionic/react';
 import { useParams } from 'react-router';
-import { home } from 'ionicons/icons';
+import { analyticsSharp, home } from 'ionicons/icons';
 import './Page.css';
 import { SyntheticEvent } from 'react';
 
@@ -10,8 +10,18 @@ const Mots: React.FC = () => {
   useIonViewWillEnter(() => {
     renderMot();
   });
-  async function getMot() {
-    let url = 'http://127.0.0.1:80/wk/php/try.php?type=defMot&mot=' + name;
+  async function getIdMot(aMot: any) {
+    let url = 'http://127.0.0.1:80/wk/php/try.php?type=idmot&mot=' + aMot;
+    try {
+      let res = await fetch(url);
+      console.log(res);
+      return await res.json();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function getMot(aName: any) {
+    let url = 'http://127.0.0.1:80/wk/php/try.php?type=defMot&mot=' + aName;
     try {
       let res = await fetch(url);
       console.log(res);
@@ -22,8 +32,10 @@ const Mots: React.FC = () => {
   }
   async function renderMot() {
     try {
-      let mot = await getMot();
+      let mot = await getMot(name);
+      let motsAChercher;
       let html = '';
+      let motContainer = document.getElementById('motsAssoc');
       if (mot == "") {
         let htmlSegment = `<div class="user">
                               <h2>Mot non trouvé</h2>                         
@@ -35,6 +47,30 @@ const Mots: React.FC = () => {
                               <h2>${mot.definition}</h2>
                          </div>`;
         html += htmlSegment;
+        motsAChercher = mot.definition.split(' ')
+        motsAChercher.forEach(async function (unMot: any) {
+          try {
+            if (unMot != "") {
+              let idMot = await getIdMot(unMot);
+              console.log(idMot);
+              if (idMot != "") {
+                let infoMot = await getMot(idMot[0].id);
+                if (infoMot != "" && unMot.toUpperCase() == infoMot.nom_mot.replace(/[^a-zA-Z ]/g, "")) {
+                  let motHtml = `
+                                <a href = "./page/mots/${infoMot.id}"><h2>${infoMot.nom_mot}</h2></a>`;
+                  if (motContainer != null) {
+                    motContainer.innerHTML += motHtml;
+                  }
+                }
+              }
+            }
+
+
+
+          } catch (error) {
+            console.log(error);
+          }
+        });
       }
 
 
@@ -68,6 +104,12 @@ const Mots: React.FC = () => {
       <IonContent fullscreen>
         <div id="container">
           Aucun mot valide défini
+        </div>
+        <h2>
+          Mots associés:
+        </h2>
+        <div id="motsAssoc">
+          Aucun mots associés
         </div>
       </IonContent>
       <IonFooter >

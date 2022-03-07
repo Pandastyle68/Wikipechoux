@@ -7,7 +7,7 @@ import './Page.css';
 
 const Recherche: React.FC = () => {
   async function getUsers(leMot: any) {
-    let url = 'http://127.0.0.1:80/wk/php/try.php?type=idmot&mot=' + leMot;
+    let url = 'http://127.0.0.1:80/wk/try.php?type=motrecherche&lettre=' + leMot;
     try {
       let res = await fetch(url);
       return await res.json();
@@ -26,7 +26,7 @@ const Recherche: React.FC = () => {
     if (leMot != "") {
       let users = await getUsers(leMot);
       let html = '';
-
+      console.log(users);
       //let rdm = Math.floor(Math.random() * users.length);  //Exploiter la base de données quand il y a une donnée choisie au hasard
       //let htmlSegment = `<div class="user">
       // <h2>${users[rdm].id}</h2>

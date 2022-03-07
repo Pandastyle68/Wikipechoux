@@ -10,6 +10,7 @@ import Introduction from './pages/Introduction';
 import Drapeaux from './pages/Drapeau';
 import MotAlea from './pages/MotAlea';
 import Mots from './pages/Mots';
+import Pmadeleine from './pages/Madeleine';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -41,6 +42,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/page/" exact={true}>
               <Page />
+            </Route>
+            <Route path="/page/madeleine" exact={true}>
+              <Pmadeleine />
             </Route>
             <Route path="/" exact={true}>
               <Page />

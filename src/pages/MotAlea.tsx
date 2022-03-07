@@ -13,7 +13,7 @@ const MotAlea: React.FC = () => {
     renderUsers();
   });
   async function getUsers() {
-    let url = 'http://127.0.0.1:80/wk/php/try.php?type=motalea';
+    let url = 'http://127.0.0.1:80/wk/try.php?type=motalea';
     try {
       let res = await fetch(url);
       return await res.json();
@@ -24,7 +24,7 @@ const MotAlea: React.FC = () => {
   async function renderUsers() {
     let users = await getUsers();
     let html = '';
-    window.location.href=("../page/mots/"+users.id);
+    window.location.href=("../page/mots/"+users[0].id);
   }
   return (
     <IonPage>

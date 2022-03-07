@@ -11,7 +11,7 @@ const Mots: React.FC = () => {
     renderMot();
   });
   async function getIdMot(aMot: any) {
-    let url = 'http://127.0.0.1:80/wk/php/try.php?type=idmot&mot=' + aMot;
+    let url = 'http://127.0.0.1:80/wk/try.php?type=defmot&mot=' + aMot;
     try {
       let res = await fetch(url);
       console.log(res);
@@ -21,7 +21,7 @@ const Mots: React.FC = () => {
     }
   }
   async function getMot(aName: any) {
-    let url = 'http://127.0.0.1:80/wk/php/try.php?type=defMot&mot=' + aName;
+    let url = 'http://127.0.0.1:80/wk/try.php?type=idmot&id=' + aName;
     try {
       let res = await fetch(url);
       console.log(res);
@@ -43,21 +43,22 @@ const Mots: React.FC = () => {
         html += htmlSegment;
       } else {
         let htmlSegment = `<div class="user">
-                              <h2>${mot.nom_mot}</h2>
-                              <h2>${mot.definition}</h2>
+                              <h2>${mot[0].nom_mot}</h2>
+                              <h2>${mot[0].definition}</h2>
                          </div>`;
         html += htmlSegment;
-        motsAChercher = mot.definition.split(' ')
+        console.log(mot);
+        motsAChercher = mot[0].definition.split(' ')
         motsAChercher.forEach(async function (unMot: any) {
           try {
             if (unMot != "") {
               let idMot = await getIdMot(unMot);
-              console.log(idMot);
               if (idMot != "") {
                 let infoMot = await getMot(idMot[0].id);
-                if (infoMot != "" && unMot.toUpperCase() == infoMot.nom_mot.replace(/[^a-zA-Z ]/g, "")) {
+                console.log(infoMot);
+                if (infoMot != "" && unMot.toUpperCase() == infoMot[0].nom_mot.replace(/[^a-zA-Z ]/g, "")) {
                   let motHtml = `
-                                <a href = "./page/mots/${infoMot.id}"><h2>${infoMot.nom_mot}</h2></a>`;
+                                <a href = "./page/mots/${infoMot[0].id}"><h2>${infoMot[0].nom_mot}</h2></a>`;
                   if (motContainer != null) {
                     motContainer.innerHTML += motHtml;
                   }

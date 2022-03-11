@@ -36,14 +36,14 @@ const appPages: AppPage[] = [
     mdIcon: archiveSharp
   },
   {
-    title: 'Vers page test',
-    url: '/page/test',
+    title: 'Madeleine',
+    url: '/page/madeleine',
     iosIcon: mailOutline,
     mdIcon: mailSharp
   },
   {
     title: 'Dossiers',
-    url: '/page/dossiers',
+    url: '/page/dossier',
     iosIcon: paperPlaneOutline,
     mdIcon: paperPlaneSharp
   },

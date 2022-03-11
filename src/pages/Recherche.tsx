@@ -7,7 +7,7 @@ import './Page.css';
 
 const Recherche: React.FC = () => {
   async function getUsers(leMot: any) {
-    let url = 'http://127.0.0.1:80/wk/try.php?type=motrecherche&lettre=' + leMot;
+    let url = 'http://192.168.0.22:80/wk/try.php?type=motrecherche&lettre=' + leMot;
     try {
       let res = await fetch(url);
       return await res.json();

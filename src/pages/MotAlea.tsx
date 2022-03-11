@@ -13,7 +13,7 @@ const MotAlea: React.FC = () => {
     renderUsers();
   });
   async function getUsers() {
-    let url = 'http://127.0.0.1:80/wk/try.php?type=motalea';
+    let url = 'http://192.168.0.22:80/wk/try.php?type=motalea';
     try {
       let res = await fetch(url);
       return await res.json();

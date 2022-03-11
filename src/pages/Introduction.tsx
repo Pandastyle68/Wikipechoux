@@ -1,4 +1,4 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonIcon, IonSearchbar, IonFooter, IonButton, IonSlides,IonSlide } from '@ionic/react';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonIcon, IonSearchbar, IonFooter, IonButton, IonSlides, IonSlide } from '@ionic/react';
 import { useParams } from 'react-router';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 import { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
@@ -23,7 +23,15 @@ const Introduction: React.FC = () => {
           <IonButtons slot="start" >
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>WIKIPECHOUX</IonTitle>
+          <IonButtons slot="end">
+            <IonButton href="./page/search">
+              <IonIcon icon="search-outline" >
+              </IonIcon>
+            </IonButton>
+          </IonButtons>
+          <div id="header-center">
+            <IonTitle>WIKIPECHOUX</IonTitle>
+          </div>
         </IonToolbar>
       </IonHeader>
 
@@ -31,33 +39,33 @@ const Introduction: React.FC = () => {
         <hr></hr>
         <div>
           <hr></hr>
-        <Swiper modules={[Autoplay, Keyboard, Pagination, Scrollbar, Zoom]} autoplay={true}
-          keyboard={true}
-          pagination={true}
-          scrollbar={true}
-          zoom={true}
-          loop={true}> 
-          <SwiperSlide>
-         <p>Chacun donne son sens au monde, le mien est de coudre le temps pour peut-être y changer un morceau de réel.</p>
-         </SwiperSlide>
-         <SwiperSlide>
-         <p>C'est pourquoi j'ai entrepris de recréer toutes les définitions du dictionnaire et d'écrire une encyclopédie en lien avec mon travail plastique (installation, peinture, dessin, gravure, sculpture, vidéo, cinéma, performance...).</p>
-         </SwiperSlide>
-         <SwiperSlide>
-         <p>On pourrait dire que c'est une encyclopédie des petites mémoires de la vie, qui fonctionnent comme des piqûres de rappel cherchant la vérité des rythmes du monde.</p>
-         </SwiperSlide>
-         <SwiperSlide>
-         <p>Mon projet est de constituer une encyclopédie "Géographie d'un multivers" comportant la totalité des mots de la langue française.</p>
-         </SwiperSlide>
-         <SwiperSlide>
-         <p>Le premier volume ressemble à une sorte de temps écrasé, possédant 8000 entrées et 300 travaux plastiques.</p>
-         </SwiperSlide>
-         <SwiperSlide>
-         <p>Chaque nouveau volume est un outil qui me permet de voir l'univers sous un autre aspect, celui d'un multivers.</p>
-         </SwiperSlide>
-        </Swiper>
-        <hr></hr>
-        <h2 id="sign">Hervé Péchoux</h2>
+          <Swiper modules={[Autoplay, Keyboard, Pagination, Scrollbar, Zoom]} autoplay={true}
+            keyboard={true}
+            pagination={true}
+            scrollbar={true}
+            zoom={true}
+            loop={true}>
+            <SwiperSlide>
+              <p>Chacun donne son sens au monde, le mien est de coudre le temps pour peut-être y changer un morceau de réel.</p>
+            </SwiperSlide>
+            <SwiperSlide>
+              <p>C'est pourquoi j'ai entrepris de recréer toutes les définitions du dictionnaire et d'écrire une encyclopédie en lien avec mon travail plastique (installation, peinture, dessin, gravure, sculpture, vidéo, cinéma, performance...).</p>
+            </SwiperSlide>
+            <SwiperSlide>
+              <p>On pourrait dire que c'est une encyclopédie des petites mémoires de la vie, qui fonctionnent comme des piqûres de rappel cherchant la vérité des rythmes du monde.</p>
+            </SwiperSlide>
+            <SwiperSlide>
+              <p>Mon projet est de constituer une encyclopédie "Géographie d'un multivers" comportant la totalité des mots de la langue française.</p>
+            </SwiperSlide>
+            <SwiperSlide>
+              <p>Le premier volume ressemble à une sorte de temps écrasé, possédant 8000 entrées et 300 travaux plastiques.</p>
+            </SwiperSlide>
+            <SwiperSlide>
+              <p>Chaque nouveau volume est un outil qui me permet de voir l'univers sous un autre aspect, celui d'un multivers.</p>
+            </SwiperSlide>
+          </Swiper>
+          <hr></hr>
+          <h2 id="sign">Hervé Péchoux</h2>
         </div>
       </IonContent>
       <IonFooter >

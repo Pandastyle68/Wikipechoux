@@ -1,0 +1,7 @@
+{
+  "name": "Wikipechoux",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
